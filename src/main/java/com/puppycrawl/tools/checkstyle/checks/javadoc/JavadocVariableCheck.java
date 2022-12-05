@@ -208,6 +208,33 @@ public class JavadocVariableCheck
      */
     public void setExcludeScope(Scope excludeScope) {
         this.excludeScope = excludeScope;
+        if(excludeScope == Scope.ANONINNER)
+        {
+            System.out.println("WARNING: Setting excludeScope to anoninner will exclude all modifiers. Set excludeScope to any of the following: ");
+            System.out.println("1) nothing\n2) public\n3) protected\n4) package\n5) private\n(Any other integer for anoninner)");
+            int response = sc.nextInt();
+            switch(response)
+            {
+                case 1:
+                    excludeScope = Scope.NOTHING;
+                    break;
+                case 2:
+                    excludeScope = Scope.PUBLIC;
+                    break;
+                case 3:
+                    excludeScope = Scope.PROTECTED;
+                    break;
+                case 4:
+                    excludeScope = Scope.PACKAGE;
+                    break;
+                case 5:
+                    excludeScope = Scope.PRIVATE;
+                    break;
+                default:
+                    excludeScope = Scope.ANONINNER;
+                    break;
+            }
+        }
     }
 
     /**
